@@ -1,8 +1,9 @@
-import axios from "axios";
 import Axios from "axios";
 
-import { BASE_URL } from "./Endpoints";
+import AppConfig from "../config/AppConfig";
 
 export default Axios.create({
-  baseUrl: BASE_URL,
+  baseURL: AppConfig.SERVICE_URL,
+  // headers: { Authorization: "Bearer " + process.env.REACT_APP_API_KEY },
+  responseType: "json",
 });

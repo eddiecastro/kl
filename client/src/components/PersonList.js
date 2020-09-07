@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 
 import Person from "./Person";
-import PersonModel from "../model/PersonModel";
+import getPeople from "../services/people/GetPeople";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,12 +16,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function PersonList() {
-  const people = [
-    new PersonModel("Kody Laseter", "kody@gmail.com", "Software Engineer"),
-    new PersonModel("blah", "blah@blah", "blah"),
-  ];
-
   const classes = useStyles();
+
+  const peopleArray = getPeople();
+
+  const [people, setPeople] = useState(peopleArray);
+
+  // useEffect(() => {
+  //   setPeople(getPeople());
+  // });
 
   return (
     <List className={classes.root}>
