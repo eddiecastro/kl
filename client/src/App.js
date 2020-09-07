@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 import Grid from "@material-ui/core/Grid";
 
-import PersonList from "./components/PersonList";
+import PersonList from "./components/person-list";
 
 function App() {
   return (
