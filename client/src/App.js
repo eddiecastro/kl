@@ -1,21 +1,22 @@
-import React, { Component } from 'react';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
+import React, { Component } from "react";
+import Grid from "@material-ui/core/Grid";
 
-class App extends Component {
+import PersonList from "./components/PersonList";
 
-  render() {
-    return (
-      <Grid container spacing={2}>
-        <Grid item xs={4}>
-        </Grid>
-        <Grid item xs={4}>
-        </Grid>
-        <Grid item xs={4}>
-        </Grid>
+function App() {
+  return (
+    <Grid container spacing={2}>
+      <Grid item xs={4}>
+        <PersonList />
       </Grid>
-    );
-  }
+      <Grid item xs={4}>
+        <PersonList />
+      </Grid>
+      <Grid item xs={4}>
+        <PersonList />
+      </Grid>
+    </Grid>
+  );
 }
 
 export default App;
