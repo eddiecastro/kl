@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 
-import Person from "./Person";
-import getPeople from "../services/people/GetPeople";
+import Person from "./person";
+import getPeople from "../services/people/get-people";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,9 +18,9 @@ const useStyles = makeStyles((theme) => ({
 function PersonList() {
   const classes = useStyles();
 
-  const peopleArray = getPeople();
+  // const peopleArray = getPeople();
 
-  const [people, setPeople] = useState(peopleArray);
+  const [people, setPeople] = useState([]);
 
   // useEffect(() => {
   //   setPeople(getPeople());

@@ -1,6 +1,6 @@
 import Axios from "axios";
 
-import AppConfig from "../config/AppConfig";
+import AppConfig from "../config/app-config";
 
 export default Axios.create({
   baseURL: AppConfig.SERVICE_URL,

@@ -1,6 +1,6 @@
-import Api from "../Api";
-import { ENDPOINTS } from "../Endpoints";
-import PersonModel from "../../models/PersonModel";
+import Api from "../api";
+import { ENDPOINTS } from "../endpoints";
+import PersonModel from "../../models/person-model";
 
 export default function getPeople() {
   return Api.get(ENDPOINTS.GET_PEOPLE)
