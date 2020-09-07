@@ -1,32 +1,19 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { apiResponse: "" };
-  }
-
-  callApi() {
-    fetch("http://localhost:3001/testAPI")
-      .then(res => res.text())
-      .then(res => this.setState({ apiResponse: res }))
-      .catch(err => err);
-  }
-
-  componentDidMount() {
-    this.callApi();
-  }
 
   render() {
     return (
-      <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-      </header>
-      <p className="App-intro">{this.state.apiResponse}</p>
-    </div>
+      <Grid container spacing={2}>
+        <Grid item xs={4}>
+        </Grid>
+        <Grid item xs={4}>
+        </Grid>
+        <Grid item xs={4}>
+        </Grid>
+      </Grid>
     );
   }
 }
