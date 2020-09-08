@@ -4,7 +4,8 @@ const router = express.Router();
 const peopleService = require("../services/people/people-service");
 
 router.get("/", function (req, res, next) {
-  peopleService.get().then(function (response) {
+  const page = req.query.page;
+  peopleService.get(page).then(function (response) {
     res.send(response);
   });
 });

@@ -13,7 +13,6 @@ function Person({ person }) {
         <Avatar alt="photo" />
       </ListItemAvatar>
       <ListItemText primary={person.name} secondary={detailText} />
-      <Divider variant="inset" component="li" />
     </ListItem>
   );
 }

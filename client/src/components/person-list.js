@@ -19,11 +19,11 @@ function PersonList() {
   const classes = useStyles();
 
   const [people, setPeople] = useState([]);
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await getPeople();
+      const result = await getPeople(page);
       setPeople(result);
     };
     fetchData();
@@ -32,7 +32,7 @@ function PersonList() {
   return (
     <List className={classes.root}>
       {people.map((person) => (
-        <Person person={person} />
+        <Person person={person} key={person.id} />
       ))}
     </List>
   );

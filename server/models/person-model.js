@@ -1,5 +1,6 @@
 module.exports = class PersonModel {
-  constructor(name, email, job) {
+  constructor(id, name, email, job) {
+    this.id = id;
     this.name = name;
     this.email = email;
     this.job = job;
