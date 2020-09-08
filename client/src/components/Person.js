@@ -6,12 +6,13 @@ import Avatar from "@material-ui/core/Avatar";
 import Divider from "@material-ui/core/Divider";
 
 function Person({ person }) {
+  const detailText = person.job + " - " + person.email;
   return (
     <ListItem alignItems="flex-start">
       <ListItemAvatar>
         <Avatar alt="photo" />
       </ListItemAvatar>
-      <ListItemText primary={person.name} secondary={person.getDetailText()} />
+      <ListItemText primary={person.name} secondary={detailText} />
       <Divider variant="inset" component="li" />
     </ListItem>
   );

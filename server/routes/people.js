@@ -1,7 +1,7 @@
-var express = require("express");
-var router = express.Router();
+const express = require("express");
+const router = express.Router();
 
-var peopleService = require("../services/people/people-service");
+const peopleService = require("../services/people/people-service");
 
 router.get("/", function (req, res, next) {
   peopleService.get().then(function (response) {

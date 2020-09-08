@@ -1,6 +1,5 @@
-var peopleRouter = require("./people");
+const peopleRouter = require("./people");
 
-function applyRoutes(app) {
+module.exports.applyRoutes = (app) => {
   app.use("/people", peopleRouter);
-}
-module.exports = applyRoutes;
+};

@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 
 import Person from "./person";
-import getPeople from "../services/people/get-people";
+import { getPeople } from "../services/people/people-service";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,13 +18,16 @@ const useStyles = makeStyles((theme) => ({
 function PersonList() {
   const classes = useStyles();
 
-  const peopleArray = getPeople();
-
   const [people, setPeople] = useState([]);
+  const [page, setPage] = useState(0);
 
-  // useEffect(() => {
-  //   setPeople(getPeople());
-  // });
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await getPeople();
+      setPeople(result);
+    };
+    fetchData();
+  }, []);
 
   return (
     <List className={classes.root}>
