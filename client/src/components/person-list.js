@@ -21,13 +21,32 @@ function PersonList() {
   const [people, setPeople] = useState([]);
   const [page, setPage] = useState(1);
 
+  // Called once component is mounted or updated
   useEffect(() => {
     const fetchData = async () => {
-      const result = await getPeople(page);
+      console.log("fetching data for page " + page);
+      var result = await getPeople(page);
+      if (people.length > 0) {
+        result = people.concat(result);
+      }
       setPeople(result);
     };
     fetchData();
-  }, []);
+
+    const onScroll = () => {
+      // detects scroll to bottom of page, triggers loading more people
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+        setPage(page + 1);
+      }
+    };
+
+    window.addEventListener("scroll", onScroll);
+
+    return () => {
+      // remove the event listener when the component is unmounted
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, [page]); // re-run the hook when the page changes
 
   return (
     <List className={classes.root}>
