@@ -1,3 +1,9 @@
+import { Config } from "../config/config";
+
+const BASE_URLS = {
+  SERVICE_URL: Config.SERVICE_URL,
+};
+
 export const ENDPOINTS = {
-  GET_PEOPLE: "/people",
+  GET_PEOPLE: BASE_URLS.SERVICE_URL + "/people",
 };

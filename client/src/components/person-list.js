@@ -27,7 +27,6 @@ function PersonList() {
   useEffect(() => {
     var nextPage;
     const fetchData = async () => {
-      console.log("fetching " + page);
       const result = await PeopleService.getPeople(page);
       if (result) {
         setShowError(false);
