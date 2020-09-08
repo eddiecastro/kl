@@ -7,14 +7,6 @@ export default function getPeople() {
     .then(function (response) {
       console.log(response);
       return response.data;
-      // return response.data.map(
-      //   (x) =>
-      //     new PersonModel(
-      //       x.first_name + " " + x.last_name,
-      //       x.email_address,
-      //       x.title
-      //     )
-      // );
     })
     .catch(function (error) {
       console.log(error);

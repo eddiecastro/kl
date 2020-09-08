@@ -1,3 +1,3 @@
-export const ENDPOINTS = {
+module.exports = {
   GET_PEOPLE: "/people",
 };

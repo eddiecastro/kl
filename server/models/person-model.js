@@ -1,4 +1,4 @@
-export default class PersonModel {
+module.exports = class PersonModel {
   constructor(name, email, job) {
     this.name = name;
     this.email = email;
@@ -8,4 +8,4 @@ export default class PersonModel {
   getDetailText() {
     return this.job + " - " + this.email;
   }
-}
+};

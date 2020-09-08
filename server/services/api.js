@@ -1,9 +1,9 @@
-import Axios from "axios";
+const axios = require("axios");
 
-import { AppConfig } from "../config/app-config";
+const config = require("../config/config");
 
-export default Axios.create({
-  baseURL: AppConfig.SERVICE_URL,
-  // headers: { Authorization: "Bearer " + process.env.REACT_APP_API_KEY },
+module.exports = axios.create({
+  baseURL: config.SL_BASE_URL,
+  headers: { Authorization: "Bearer " + config.SL_API_KEY },
   responseType: "json",
 });

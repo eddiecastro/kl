@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
 function PersonList() {
   const classes = useStyles();
 
-  // const peopleArray = getPeople();
+  const peopleArray = getPeople();
 
   const [people, setPeople] = useState([]);
 
