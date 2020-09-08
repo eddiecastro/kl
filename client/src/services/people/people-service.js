@@ -11,6 +11,6 @@ export async function getPeople(page) {
     const res = await Api.get(ENDPOINTS.GET_PEOPLE, params);
     return res.data;
   } catch (error) {
-    console.log("failed");
+    console.log(error);
   }
 }

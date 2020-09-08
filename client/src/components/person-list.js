@@ -4,7 +4,7 @@ import List from "@material-ui/core/List";
 import { Alert, AlertTitle } from "@material-ui/lab";
 
 import Person from "./person";
-import { getPeople } from "../services/people/people-service";
+import * as PeopleService from "../services/people/people-service";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,7 +27,8 @@ function PersonList() {
   useEffect(() => {
     var nextPage;
     const fetchData = async () => {
-      const result = await getPeople(page);
+      console.log("fetching " + page);
+      const result = await PeopleService.getPeople(page);
       if (result) {
         setShowError(false);
         nextPage = result.metadata.paging.next_page; // set the next page based on response

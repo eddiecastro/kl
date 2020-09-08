@@ -1,5 +1,18 @@
-// const sum = require('./sum');
+import * as PeopleService from "./people-service";
+import api from "../api";
 
-test("adds 1 + 2 to equal 3", () => {
-  expect(3).toBe(3);
+jest.mock("../api");
+
+test("success call", () => {
+  const mockResponse = [
+    {
+      id: 1,
+      name: "First Last",
+      email: "test@email.com",
+      job: "job title",
+    },
+  ];
+  api.get().mockResolvedValue(mockResponse);
+  console.log(api);
+  expect(PeopleService.getPeople()).toEqual(mockResponse);
 });

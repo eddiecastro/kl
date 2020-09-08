@@ -1,7 +1,10 @@
-const api = require("../api");
+const fetch = require("node-fetch");
+const { URLSearchParams } = require("url");
+
 const endpoints = require("../endpoints");
 const personModel = require("../../models/person-model");
 const responseModel = require("../../models/response-model");
+const authentication = require("../../utils/authentication");
 
 /**
  * Service to retrieve people from Salesloft `/people` api
@@ -9,15 +12,21 @@ const responseModel = require("../../models/response-model");
  */
 module.exports.get = (page) => {
   const params = {
-    params: {
-      page: page,
-    },
+    page: page,
   };
-  console.log(params);
-  return api
-    .get(endpoints.GET_PEOPLE, params)
-    .then(function (response) {
-      const data = response.data.data.map(
+  const queryParams = new URLSearchParams(params);
+  return fetch(endpoints.GET_PEOPLE + "?" + queryParams, {
+    headers: authentication.SL_AUTH_HEADER,
+  })
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        console.log(res);
+      }
+    })
+    .then((json) => {
+      const data = json.data.map(
         (x) =>
           new personModel(
             x.id,
@@ -26,10 +35,7 @@ module.exports.get = (page) => {
             x.title
           )
       );
-      const metadata = response.data.metadata;
+      const metadata = json.metadata;
       return new responseModel(metadata, data);
-    })
-    .catch(function (error) {
-      console.log(error);
     });
 };
