@@ -14,12 +14,15 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
   },
+  main: {
+    "margin-top": "1px",
+  },
 }));
 
 export default function HomePage() {
   const classes = useStyles();
   return (
-    <div className="root">
+    <Grid container spacing={1}>
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
@@ -27,13 +30,13 @@ export default function HomePage() {
           </Typography>
         </Toolbar>
       </AppBar>
-      <Grid container spacing={2}>
+      <Grid container spacing={2} className={classes.main}>
         <Grid item xs={4}></Grid>
         <Grid item xs={4}>
           <PersonList />
         </Grid>
         <Grid item xs={4}></Grid>
       </Grid>
-    </div>
+    </Grid>
   );
 }

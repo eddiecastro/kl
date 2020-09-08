@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
+import { Alert, AlertTitle } from "@material-ui/lab";
 
 import Person from "./person";
 import { getPeople } from "../services/people/people-service";
@@ -20,23 +21,30 @@ function PersonList() {
 
   const [people, setPeople] = useState([]);
   const [page, setPage] = useState(1);
+  const [showError, setShowError] = useState(false);
 
-  // Called once component is mounted or updated
+  // Called every time component is mounted or updated
   useEffect(() => {
+    var nextPage;
     const fetchData = async () => {
-      console.log("fetching data for page " + page);
-      var result = await getPeople(page);
-      if (people.length > 0) {
-        result = people.concat(result);
+      const result = await getPeople(page);
+      if (result) {
+        setShowError(false);
+        nextPage = result.metadata.paging.next_page; // set the next page based on response
+        setPeople(people.concat(result.data));
+      } else {
+        setShowError(true);
       }
-      setPeople(result);
     };
-    fetchData();
+    fetchData(page);
 
     const onScroll = () => {
-      // detects scroll to bottom of page, triggers loading more people
-      if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-        setPage(page + 1);
+      // detects scroll to bottom of page, triggers loading more people if there is a next page
+      if (
+        nextPage &&
+        window.innerHeight + window.scrollY >= document.body.offsetHeight
+      ) {
+        setPage(nextPage);
       }
     };
 
@@ -48,12 +56,24 @@ function PersonList() {
     };
   }, [page]); // re-run the hook when the page changes
 
+  const Error = () => {
+    return (
+      <Alert severity="error">
+        <AlertTitle>Error</AlertTitle>
+        Failed to retrieve people — <strong>check network logs</strong>
+      </Alert>
+    );
+  };
+
   return (
-    <List className={classes.root}>
-      {people.map((person) => (
-        <Person person={person} key={person.id} />
-      ))}
-    </List>
+    <div>
+      {showError ? <Error /> : null}
+      <List className={classes.root}>
+        {people.map((person) => (
+          <Person person={person} key={person.id} />
+        ))}
+      </List>
+    </div>
   );
 }
 
