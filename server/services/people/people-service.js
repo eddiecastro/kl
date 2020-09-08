@@ -1,5 +1,5 @@
 const fetch = require("node-fetch");
-const { URLSearchParams } = require("url");
+const { URL, URLSearchParams } = require("url");
 
 const endpoints = require("../endpoints");
 const personModel = require("../../models/person-model");
@@ -11,11 +11,11 @@ const authentication = require("../../utils/authentication");
  * This essentially functions as a pass through, mirroring needed parameters and using the same response structure
  */
 module.exports.get = (page) => {
-  const params = {
+  var url = new URL(endpoints.GET_PEOPLE);
+  url.search = new URLSearchParams({
     page: page,
-  };
-  const queryParams = new URLSearchParams(params);
-  return fetch(endpoints.GET_PEOPLE + "?" + queryParams, {
+  });
+  return fetch(url, {
     headers: authentication.SL_AUTH_HEADER,
   })
     .then((res) => {
@@ -26,6 +26,7 @@ module.exports.get = (page) => {
       }
     })
     .then((json) => {
+      // reduce returned data down to only required fields
       const data = json.data.map(
         (x) =>
           new personModel(

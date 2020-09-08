@@ -70,6 +70,7 @@ function PersonList() {
       {showError ? <Error /> : null}
       <List className={classes.root}>
         {people.map((person) => (
+          // key attribute allows react to render only the data that has changed
           <Person person={person} key={person.id} />
         ))}
       </List>
