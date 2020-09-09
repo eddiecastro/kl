@@ -11,9 +11,17 @@ export async function getPeople(page) {
     url.search = new URLSearchParams({
       page: page,
     });
-    const res = await fetch(url);
+    const res = await fetch(`${ENDPOINTS.GET_PEOPLE}?page=${page}`);
     if (res.ok) {
       const json = await res.json();
+      const data = json.data.map((x) => {
+        return {
+          id: x.id,
+          name: `${x.first_name} ${x.last_name}`,
+          detail: `${x.email_address} - ${x.title}`,
+        };
+      });
+      json.data = data;
       return json;
     } else {
       console.log(res);

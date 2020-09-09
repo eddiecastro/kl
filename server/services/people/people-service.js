@@ -13,7 +13,7 @@ const errorFormatter = require("../../utils/error-formatter");
 module.exports.get = async (page) => {
   try {
     const res = await fetch(
-      endpoints.GET_PEOPLE + "?page=" + page,
+      `${endpoints.GET_PEOPLE}?page=${page}`,
       authentication.SL_AUTH_HEADER
     );
     if (res.ok) {
