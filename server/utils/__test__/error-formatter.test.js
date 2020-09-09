@@ -1,5 +1,5 @@
-const errorFormatter = require("./error-formatter");
-const response = require("../models/response");
+const errorFormatter = require("../error-formatter");
+const response = require("../../models/response");
 
 describe("verify error formatter", () => {
   test("creates responseModel from statuscode", () => {

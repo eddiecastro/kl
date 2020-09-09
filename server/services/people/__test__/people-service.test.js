@@ -1,9 +1,9 @@
-const testUtils = require("../../utils/test-utils");
-var endpoints = require("../endpoints");
-var authentication = require("../../utils/authentication");
-var errorFormatter = require("../../utils/error-formatter");
+const testUtils = require("../../../utils/test-utils");
+var endpoints = require("../../endpoints");
+var authentication = require("../../../utils/authentication");
+var errorFormatter = require("../../../utils/error-formatter");
 
-const peopleService = require("./people-service");
+const peopleService = require("../people-service");
 
 describe("verify people service can fetch using right params and handle errors", () => {
   beforeEach(() => {

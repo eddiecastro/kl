@@ -1,15 +1,15 @@
-const router = require("./router");
+const router = require("../router");
 
 const request = require("supertest");
 const express = require("express");
 const app = express();
 
-const errorFormatter = require("../utils/error-formatter");
+const errorFormatter = require("../../utils/error-formatter");
 
 app.use(express.urlencoded({ extended: false }));
 
 describe("verify routes are applied properly", () => {
-  test("Should return status", (done) => {
+  test("Should return basic status", (done) => {
     router.applyRoutes(app);
 
     const response = { metadata: { status: "Running" }, data: {} };
