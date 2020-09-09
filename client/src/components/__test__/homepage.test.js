@@ -2,9 +2,15 @@ import React from "react";
 import { render } from "@testing-library/react";
 import HomePage from "../homepage";
 
-describe("verifies rendering of homepage component", () => {
-  test("root div renders", () => {
+describe("homepage component", () => {
+  test("should render appbar and title", () => {
+    const { getByTestId, getByText } = render(<HomePage />);
+    expect(getByTestId("appbar")).toBeInTheDocument();
+    expect(getByText("Salesloft Dev Project")).toBeInTheDocument();
+  });
+
+  test("should render personlist", () => {
     const { getByTestId } = render(<HomePage />);
-    expect(getByTestId("root")).toBeInTheDocument();
+    expect(getByTestId("personlist")).toBeInTheDocument();
   });
 });

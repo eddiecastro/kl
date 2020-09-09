@@ -23,7 +23,7 @@ export default function HomePage() {
   const classes = useStyles();
   return (
     <Grid container spacing={1}>
-      <AppBar position="static">
+      <AppBar position="static" data-testid="appbar">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
             Salesloft Dev Project
@@ -33,7 +33,7 @@ export default function HomePage() {
       <Grid container spacing={2} className={classes.main}>
         <Grid item xs={4}></Grid>
         <Grid item xs={4}>
-          <PersonList />
+          <PersonList data-testid="personlist" />
         </Grid>
         <Grid item xs={4}></Grid>
       </Grid>

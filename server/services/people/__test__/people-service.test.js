@@ -5,7 +5,7 @@ var errorFormatter = require("../../../utils/error-formatter");
 
 const peopleService = require("../people-service");
 
-describe("verify people service can fetch using right params and handle errors", () => {
+describe("people service", () => {
   beforeEach(() => {
     fetchMock.resetMocks();
 

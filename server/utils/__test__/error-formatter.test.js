@@ -1,7 +1,7 @@
 const errorFormatter = require("../error-formatter");
 const response = require("../../models/response");
 
-describe("verify error formatter", () => {
+describe("error formatter", () => {
   test("creates responseModel from statuscode", () => {
     const statusCode = 404;
     const expectedResponse = new response(

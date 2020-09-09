@@ -8,7 +8,7 @@ const errorFormatter = require("../../utils/error-formatter");
 
 app.use(express.urlencoded({ extended: false }));
 
-describe("verify routes are applied properly", () => {
+describe("router", () => {
   test("Should return basic status", (done) => {
     router.applyRoutes(app);
 
