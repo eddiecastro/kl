@@ -1,13 +1,13 @@
-const responseModel = require("../models/response-model");
+const response = require("../models/response");
 
 function status(statusCode) {
   var metadata = { error: `Request failed - status code: ${statusCode}` };
-  return new responseModel(metadata, {});
+  return new response(metadata, {});
 }
 
 function error(error) {
   var metadata = { error: `Request failed - reason: ${error}` };
-  return new responseModel(metadata, {});
+  return new response(metadata, {});
 }
 
 module.exports = {

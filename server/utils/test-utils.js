@@ -1,8 +1,6 @@
 const { Response } = require("node-fetch");
 
-const personModel = require("../models/person-model");
 const errorFormatter = require("./error-formatter");
-const responseModel = require("../models/response-model");
 
 const goodData = {
   metadata: {},

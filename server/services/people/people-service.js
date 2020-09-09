@@ -1,8 +1,8 @@
 const fetch = require("node-fetch");
 
 const endpoints = require("../endpoints");
-const personModel = require("../../models/person-model");
-const responseModel = require("../../models/response-model");
+const person = require("../../models/person");
+const response = require("../../models/response");
 const authentication = require("../../utils/authentication");
 const errorFormatter = require("../../utils/error-formatter");
 
@@ -20,16 +20,10 @@ module.exports.get = async (page) => {
       const json = await res.json();
       const data = json.data.map(
         (x) =>
-          new personModel(
-            x.id,
-            x.first_name,
-            x.last_name,
-            x.email_address,
-            x.title
-          )
+          new person(x.id, x.first_name, x.last_name, x.email_address, x.title)
       );
       const metadata = json.metadata;
-      return new responseModel(metadata, data);
+      return new response(metadata, data);
     } else {
       return errorFormatter.status(res.status);
     }

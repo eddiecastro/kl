@@ -18,7 +18,7 @@ describe("verify people service can fetch using right params and handle errors",
     endpoints.GET_PEOPLE = "https://test.com/people";
   });
 
-  test("get calls fetch with the right args and returns the correct response", async () => {
+  test("Should fetch with the right args and returns the correct response", async () => {
     fetchMock.mockResolvedValue(Promise.resolve(testUtils.goodResponse));
 
     const res = await peopleService.get(1);
@@ -30,7 +30,7 @@ describe("verify people service can fetch using right params and handle errors",
     );
   });
 
-  test("get returns status error when statuscode is not ok", async () => {
+  test("Should return status error when statuscode is not ok", async () => {
     fetchMock.mockResolvedValue(Promise.resolve(testUtils.badStatusResponse));
 
     const res = await peopleService.get(1);
@@ -38,7 +38,7 @@ describe("verify people service can fetch using right params and handle errors",
     expect(res).toEqual(testUtils.badStatus);
   });
 
-  test("get returns error when parsing throws exception because data is empty", async () => {
+  test("Should return error when parsing throws exception because data is empty", async () => {
     fetchMock.mockResolvedValue(Promise.resolve(testUtils.emptyResponse));
 
     const res = await peopleService.get(1);

@@ -1,10 +1,10 @@
 const errorFormatter = require("./error-formatter");
-const responseModel = require("../models/response-model");
+const response = require("../models/response");
 
 describe("verify error formatter", () => {
   test("creates responseModel from statuscode", () => {
     const statusCode = 404;
-    const expectedResponse = new responseModel(
+    const expectedResponse = new response(
       { error: `Request failed - status code: ${statusCode}` },
       {}
     );
@@ -15,7 +15,7 @@ describe("verify error formatter", () => {
   test("creates responseModel from error", () => {
     const error =
       "Request failed - reason: TypeError: Cannot read property 'map' of undefined";
-    const expectedResponse = new responseModel(
+    const expectedResponse = new response(
       { error: `Request failed - reason: ${error}` },
       {}
     );
