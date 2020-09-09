@@ -1,5 +1,3 @@
-const { Response, Headers } = jest.requireActual("node-fetch");
-
 const testUtils = require("../../utils/test-utils");
 const peopleService = require("./people-service");
 
@@ -25,7 +23,7 @@ describe("verify people service can fetch using right params and handle errors",
 
     expect(res).toEqual(testUtils.goodData);
     expect(fetch).toBeCalledWith(
-      endpoints.GET_PEOPLE + "?page=1",
+      `${endpoints.GET_PEOPLE}?page=1`,
       authentication.SL_AUTH_HEADER
     );
   });

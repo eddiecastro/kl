@@ -1,5 +1,4 @@
 const fetch = require("node-fetch");
-const { URL, URLSearchParams } = require("url");
 
 const endpoints = require("../endpoints");
 const personModel = require("../../models/person-model");
