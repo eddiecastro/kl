@@ -1,9 +1,10 @@
 module.exports = class PersonModel {
-  constructor(id, name, email, job) {
+  constructor(id, first_name, last_name, email_address, title) {
     this.id = id;
-    this.name = name;
-    this.email = email;
-    this.job = job;
+    this.first_name = first_name;
+    this.last_name = last_name;
+    this.email_address = email_address;
+    this.title = title;
   }
 
   getDetailText() {

@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "start": "nodemon ./bin/www",
+    "test": "jest",
+    "test:watch": "npm run test -- --watch"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -16,6 +18,14 @@
     "node-fetch": "^2.6.1"
   },
   "devDependencies": {
+    "jest": "^26.4.2",
+    "jest-fetch-mock": "^3.0.3",
     "nodemon": "^2.0.4"
+  },
+  "jest": {
+    "automock": false,
+    "setupFiles": [
+      "./setupTests.js"
+    ]
   }
 }
