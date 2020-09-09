@@ -7,10 +7,6 @@ import { ENDPOINTS } from "../endpoints";
  */
 export async function getPeople(page) {
   try {
-    var url = new URL(ENDPOINTS.GET_PEOPLE);
-    url.search = new URLSearchParams({
-      page: page,
-    });
     const res = await fetch(`${ENDPOINTS.GET_PEOPLE}?page=${page}`);
     if (res.ok) {
       const json = await res.json();

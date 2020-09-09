@@ -9,7 +9,7 @@ const errorFormatter = require("../../utils/error-formatter");
 app.use(express.urlencoded({ extended: false }));
 
 describe("router", () => {
-  test("Should return basic status", (done) => {
+  it("Should return basic status", (done) => {
     router.applyRoutes(app);
 
     const response = { metadata: { status: "Running" }, data: {} };
@@ -21,7 +21,7 @@ describe("router", () => {
       .expect(200, done);
   });
 
-  test("Should return fallback route", (done) => {
+  it("Should return fallback route", (done) => {
     router.applyRoutes(app);
 
     const response = {

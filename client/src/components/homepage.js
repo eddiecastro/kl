@@ -33,7 +33,7 @@ export default function HomePage() {
       <Grid container spacing={2} className={classes.main}>
         <Grid item xs={4}></Grid>
         <Grid item xs={4}>
-          <PersonList data-testid="personlist" />
+          <PersonList />
         </Grid>
         <Grid item xs={4}></Grid>
       </Grid>

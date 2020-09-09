@@ -4,7 +4,6 @@ var authentication = require("../../../utils/authentication");
 var errorFormatter = require("../../../utils/error-formatter");
 
 const peopleService = require("../people-service");
-
 describe("people service", () => {
   beforeEach(() => {
     fetchMock.resetMocks();
@@ -18,7 +17,7 @@ describe("people service", () => {
     endpoints.GET_PEOPLE = "https://test.com/people";
   });
 
-  test("Should fetch with the right args and returns the correct response", async () => {
+  it("Should fetch with the right args and returns the correct response", async () => {
     fetchMock.mockResolvedValue(Promise.resolve(testUtils.goodResponse));
 
     const res = await peopleService.get(1);
@@ -30,7 +29,7 @@ describe("people service", () => {
     );
   });
 
-  test("Should return status error when statuscode is not ok", async () => {
+  it("Should return status error when statuscode is not ok", async () => {
     fetchMock.mockResolvedValue(Promise.resolve(testUtils.badStatusResponse));
 
     const res = await peopleService.get(1);
@@ -38,7 +37,7 @@ describe("people service", () => {
     expect(res).toEqual(testUtils.badStatus);
   });
 
-  test("Should return error when parsing throws exception because data is empty", async () => {
+  it("Should return error when parsing throws exception because data is empty", async () => {
     fetchMock.mockResolvedValue(Promise.resolve(testUtils.emptyResponse));
 
     const res = await peopleService.get(1);
