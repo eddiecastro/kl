@@ -1,19 +1,21 @@
 const testUtils = require("../../utils/test-utils");
-const peopleService = require("./people-service");
-
-// set values for vars that rely on process.env
-var authentication = require("../../utils/authentication");
-authentication.SL_AUTH_HEADER = {
-  headers: {
-    Authorization: "Bearer apikey",
-  },
-};
 var endpoints = require("../endpoints");
-endpoints.GET_PEOPLE = "https://test.com/people";
+var authentication = require("../../utils/authentication");
+var errorFormatter = require("../../utils/error-formatter");
+
+const peopleService = require("./people-service");
 
 describe("verify people service can fetch using right params and handle errors", () => {
   beforeEach(() => {
     fetchMock.resetMocks();
+
+    // set values for vars that rely on process.env
+    authentication.SL_AUTH_HEADER = {
+      headers: {
+        Authorization: "Bearer apikey",
+      },
+    };
+    endpoints.GET_PEOPLE = "https://test.com/people";
   });
 
   test("get calls fetch with the right args and returns the correct response", async () => {
@@ -28,11 +30,21 @@ describe("verify people service can fetch using right params and handle errors",
     );
   });
 
-  test("get returns error when statuscode is not ok", async () => {
-    fetchMock.mockResolvedValue(Promise.resolve(testUtils.badResponse));
+  test("get returns status error when statuscode is not ok", async () => {
+    fetchMock.mockResolvedValue(Promise.resolve(testUtils.badStatusResponse));
 
     const res = await peopleService.get(1);
 
-    expect(res).toEqual(testUtils.badData);
+    expect(res).toEqual(testUtils.badStatus);
+  });
+
+  test("get returns error when parsing throws exception because data is empty", async () => {
+    fetchMock.mockResolvedValue(Promise.resolve(testUtils.emptyResponse));
+
+    const res = await peopleService.get(1);
+
+    expect(res).toEqual(
+      errorFormatter.error("TypeError: Cannot read property 'map' of undefined")
+    );
   });
 });

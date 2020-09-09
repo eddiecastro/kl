@@ -1,10 +1,11 @@
 const express = require("express");
 const router = express.Router();
 
-const responseModel = require("../models/response-model");
+const errorFormatter = require("../utils/error-formatter");
 
+// Catch all for unregistered routes
 router.get("/*", function (req, res, next) {
-  res.status(400).send(new responseModel("Not found", {}));
+  res.status(404).send(errorFormatter.error("Not found"));
 });
 
 module.exports = router;

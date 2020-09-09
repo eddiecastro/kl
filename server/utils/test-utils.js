@@ -17,7 +17,7 @@ const goodData = {
   ],
 };
 
-const badData = errorFormatter(500);
+const badStatus = errorFormatter.status(500);
 
 const goodInit = {
   status: 200,
@@ -26,12 +26,14 @@ const badInit = {
   status: 500,
 };
 
-const badResponse = new Response("", badInit);
+const badStatusResponse = new Response("", badInit);
 const goodResponse = new Response(JSON.stringify(goodData), goodInit);
+const emptyResponse = new Response(JSON.stringify({}), goodInit);
 
 module.exports = {
   goodResponse: goodResponse,
   goodData: goodData,
-  badResponse: badResponse,
-  badData: badData,
+  badStatusResponse: badStatusResponse,
+  badStatus: badStatus,
+  emptyResponse: emptyResponse,
 };
