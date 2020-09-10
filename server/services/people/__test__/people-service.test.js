@@ -24,7 +24,7 @@ describe("people service", () => {
 
     expect(res).toEqual(testUtils.goodData);
     expect(fetch).toBeCalledWith(
-      `${endpoints.GET_PEOPLE}?page=1`,
+      `${endpoints.GET_PEOPLE}?page=1&per_page=25`,
       authentication.SL_AUTH_HEADER
     );
   });

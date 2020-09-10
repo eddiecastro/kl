@@ -18,6 +18,5 @@ describe("Person component", () => {
     expect(getByText(personData.name)).toBeInTheDocument();
     expect(getByText(personData.detail)).toBeInTheDocument();
     expect(container.querySelector("div.MuiAvatar-root")).toBeInTheDocument();
-    console.log(debug());
   });
 });

@@ -10,10 +10,10 @@ const errorFormatter = require("../../utils/error-formatter");
  * Service to retrieve people from Salesloft `/people` api
  * This essentially functions as a pass through, mirroring needed parameters and using the same response structure
  */
-module.exports.get = async (page) => {
+module.exports.get = async (page = 1, perPage = 25) => {
   try {
     const res = await fetch(
-      `${endpoints.GET_PEOPLE}?page=${page}`,
+      `${endpoints.GET_PEOPLE}?page=${page}&per_page=${perPage}`,
       authentication.SL_AUTH_HEADER
     );
     if (res.ok) {

@@ -1,9 +1,12 @@
 const { Response } = require("node-fetch");
-
 const errorFormatter = require("./error-formatter");
 
 const goodData = {
-  metadata: {},
+  metadata: {
+    paging: {
+      next_page: 2,
+    },
+  },
   data: [
     {
       id: 1,
