@@ -1,5 +1,6 @@
 const peopleService = require("../people/people-service");
 const frequencyCalculator = require("./frequency-calculator");
+const frequencyFormatter = require("./frequency-formatter");
 
 /**
  * Return frequency count for characters in email address
@@ -18,7 +19,9 @@ module.exports.get = async (pageLimit = 10) => {
 
     nextPage = res.metadata.paging.next_page;
   }
-  const frequencyCount = frequencyCalculator.multiple(emailAddresses);
+  const frequencyMap = frequencyCalculator.multiple(emailAddresses);
 
-  return frequencyCount;
+  const frequencySorted = frequencyFormatter.sort(frequencyMap);
+
+  return frequencySorted;
 };
