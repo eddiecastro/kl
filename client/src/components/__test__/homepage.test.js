@@ -1,25 +1,22 @@
 import React from "react";
-import { createMount } from "@material-ui/core/test-utils";
+import { render } from "@testing-library/react";
+import { act } from "react-dom/test-utils";
 
 import HomePage from "../homepage";
 
-describe("homepage component", () => {
-  var mount;
-
+describe("HomePage component", () => {
   beforeAll(() => {
-    mount = createMount();
+    // mocking personlist so we dont have to test it here
+    jest.mock("../person-list", () => () => <div>PersonList</div>);
   });
 
-  it("should render appbar and title", () => {
-    const wrapper = mount(<HomePage />);
-    //todo: improve assertion
-    expect(wrapper.find("h6").props().children).toEqual(
-      "Salesloft Dev Project"
-    );
+  it("should render appbar title", async () => {
+    const { container, debug, getByText } = render(<HomePage />);
+    expect(getByText("Salesloft People")).toBeInTheDocument();
   });
 
-  it("should render personlist", async () => {
-    const wrapper = mount(<HomePage />);
-    expect(wrapper.find("PersonList").exists()).toBeTruthy();
+  it("should render personlist ul", async () => {
+    const { container, debug, getByText } = render(<HomePage />);
+    expect(container.querySelector("ul")).toBeInTheDocument();
   });
 });

@@ -4,7 +4,7 @@ import List from "@material-ui/core/List";
 import { Alert, AlertTitle } from "@material-ui/lab";
 
 import Person from "./person";
-import * as PeopleService from "../services/people/people-service";
+import { ENDPOINTS } from "../config/endpoints";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,13 +27,19 @@ function PersonList() {
   useEffect(() => {
     var nextPage;
     const fetchData = async () => {
-      const result = await PeopleService.getPeople(page);
-      if (result) {
-        setShowError(false);
-        nextPage = result.metadata.paging.next_page; // set the next page based on response
-        setPeople(people.concat(result.data));
-      } else {
+      try {
+        const res = await fetch(`${ENDPOINTS.GET_PEOPLE}?page=${page}`);
+        const data = await handleResponse(res);
+        if (data) {
+          setShowError(false);
+          nextPage = data.metadata.paging.next_page; // set the next page based on response
+          setPeople([...people, ...data.data]);
+        } else {
+          setShowError(true);
+        }
+      } catch (error) {
         setShowError(true);
+        console.log(error);
       }
     };
     fetchData(page);
@@ -55,6 +61,23 @@ function PersonList() {
       window.removeEventListener("scroll", onScroll);
     };
   }, [page]); // re-run the hook when the page changes
+
+  const handleResponse = async (res) => {
+    if (res.ok) {
+      const json = await res.json();
+      const mappedData = json.data.map((x) => {
+        return {
+          id: x.id,
+          name: `${x.first_name} ${x.last_name}`,
+          detail: `${x.email_address} - ${x.title}`,
+        };
+      });
+      json.data = mappedData;
+      return json;
+    } else {
+      console.log(res);
+    }
+  };
 
   const Error = () => {
     return (

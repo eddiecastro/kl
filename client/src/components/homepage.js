@@ -26,7 +26,7 @@ export default function HomePage() {
       <AppBar position="static" data-testid="appbar">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
-            Salesloft Dev Project
+            Salesloft People
           </Typography>
         </Toolbar>
       </AppBar>
