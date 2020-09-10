@@ -12,11 +12,6 @@ export const successData = {
     },
   ],
 };
-const successJsonPromise = Promise.resolve(successData);
-const fetchPromise = Promise.resolve({
-  ok: true,
-  json: () => jsonPromise,
-});
 
 export function mockFetch(data, success) {
   const jsonPromise = Promise.resolve(data);
