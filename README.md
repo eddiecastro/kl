@@ -26,3 +26,19 @@ This repo contains 2 self contained projects for the client and server side appl
 9 - (in a new terminal) ```npm run start-client```
 
 10 - A web browser should automatically open to localhost:3000
+
+# Client details
+
+* React frontend built with Material UI
+* Testing framework uses React Testing Library with Jest
+
+* Center column fetches people data and uses a simple infinite scroll implementation
+* Left column fetches character frequency
+* Right Column fetches potential duplicates based on 2 criteria
+  * Email address character frequencies that differ by less than 15%
+  * Email address local part exact matches
+    * ie: ```<local part>@<domain>```
+    
+# Server details
+
+* Node.js and express backend using Jest and Supertest testing frameworks
