@@ -29,7 +29,7 @@ This repo contains 2 self contained projects for the client and server side appl
 
 # Client details
 
-* React frontend built with Material UI
+* React frontend built on Material UI
 * Testing framework uses React Testing Library with Jest
 
 * Center column fetches people data and uses a simple infinite scroll implementation
