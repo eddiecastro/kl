@@ -1,0 +1,21 @@
+{
+  "name": "peopleapp",
+  "version": "1.0.0",
+  "description": "Application for fetching, analyzing, and displaying people data",
+  "main": "index.js",
+  "scripts": {
+    "test": "cd ./client; npm test; cd ./../server; npm test",
+    "install": "cd ./client; npm install; cd ./../server; npm install",
+    "start": "cd ./client; npm start; cd ./../server; npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kodylaseter/PeopleApp.git"
+  },
+  "author": "Kody Laseter",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kodylaseter/PeopleApp/issues"
+  },
+  "homepage": "https://github.com/kodylaseter/PeopleApp#readme"
+}
