@@ -1,10 +1,9 @@
 const peopleService = require("../people/people-service");
 const frequencyCalculator = require("./frequency-calculator");
-const frequencyFormatter = require("./frequency-formatter");
 
 /**
  * Return frequency count for characters in email address
- * Default pageLimit is 10 to reduce the likelihood of long executions
+ * Default pageLimit is 10 to reduce the likelihood of long executions or loops
  */
 module.exports.get = async (pageLimit = 10) => {
   const perPage = 100;
@@ -19,9 +18,5 @@ module.exports.get = async (pageLimit = 10) => {
 
     nextPage = res.metadata.paging.next_page;
   }
-  const frequencyMap = frequencyCalculator.multiple(emailAddresses);
-
-  const frequencySorted = frequencyFormatter.sort(frequencyMap);
-
-  return frequencySorted;
+  return frequencyCalculator.multiple(emailAddresses);
 };

@@ -17,7 +17,7 @@ describe("people service", () => {
     endpoints.GET_PEOPLE = "https://test.com/people";
   });
 
-  it("Should fetch with the right args and returns the correct response", async () => {
+  it("Should fetch with the right args and return the correct response", async () => {
     fetchMock.mockResolvedValue(Promise.resolve(testUtils.goodResponse));
 
     const res = await peopleService.get(1);

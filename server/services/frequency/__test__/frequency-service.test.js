@@ -8,17 +8,17 @@ describe("frequency service", () => {
   });
 
   it("Should return correct frequency count", async () => {
-    const frequencyData = [
-      ["m", 3],
-      ["e", 2],
-      ["a", 2],
-      ["i", 2],
-      ["l", 2],
-      ["@", 1],
-      [".", 1],
-      ["c", 1],
-      ["o", 1],
-    ];
+    const frequencyData = {
+      ".": 1,
+      "@": 1,
+      a: 2,
+      c: 1,
+      e: 2,
+      i: 2,
+      l: 2,
+      m: 3,
+      o: 1,
+    };
 
     const res = await frequencyService.get(1);
 

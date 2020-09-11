@@ -1,3 +1,7 @@
+/**
+ * Increments individual letter counts for a given string
+ * @param {*} emailAddress
+ */
 function single(emailAddress) {
   var characterMap = {};
   [...emailAddress].map((letter) => {
@@ -6,18 +10,10 @@ function single(emailAddress) {
   return characterMap;
 }
 
-module.exports.single = single;
-
+/**
+ * Increment individual letter counts for an array of strings
+ * @param {*} emailAddresses
+ */
 module.exports.multiple = (emailAddresses) => {
-  var characterMap = {};
-  emailAddresses.map((address) => {
-    const tempCharacterMap = single(address);
-    for (const letter of Object.keys(tempCharacterMap)) {
-      characterMap[letter]
-        ? (characterMap[letter] =
-            characterMap[letter] + tempCharacterMap[letter])
-        : (characterMap[letter] = tempCharacterMap[letter]);
-    }
-  });
-  return characterMap;
+  return single(emailAddresses.join(""));
 };
