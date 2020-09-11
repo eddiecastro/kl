@@ -6,7 +6,8 @@
   "scripts": {
     "test": "cd ./client; npm test; cd ./../server; npm test",
     "install": "cd ./client; npm install; cd ./../server; npm install",
-    "start": "cd ./client; npm start; cd ./../server; npm start"
+    "start-server": "cd ./server; npm start",
+    "start-client": "cd ./client; npm start"
   },
   "repository": {
     "type": "git",
