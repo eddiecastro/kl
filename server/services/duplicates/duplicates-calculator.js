@@ -25,8 +25,11 @@ module.exports.localPartEmail = (originalPeople) => {
     people.forEach((p2) => {
       if (!_.isEqual(p1, p2)) {
         if (p1.local_email === p2.local_email) {
-          if (!isArrayInArray(duplicates, [p1, p2])) {
-            duplicates.push([p1, p2]);
+          var match = {
+            people: [p1, p2],
+          };
+          if (!isInArray(duplicates, match)) {
+            duplicates.push(match);
           }
         }
       }
@@ -60,8 +63,12 @@ module.exports.frequency = (originalPeople) => {
         if (Math.abs(p1.email_address.length - p2.email_address.length) < 3) {
           var variationPercentage = compareFrequency(p1, p2);
           if (variationPercentage < variationThreshold) {
-            if (!isArrayInArray(duplicates, [p1, p2, variationPercentage])) {
-              duplicates.push([p1, p2, variationPercentage]);
+            var match = {
+              people: [p1, p2],
+              variationPercentage: variationPercentage,
+            };
+            if (!isInArray(duplicates, match)) {
+              duplicates.push(match);
             }
           }
         }
@@ -113,11 +120,16 @@ function compareFrequency(person1, person2) {
   return misses / length;
 }
 
-function isArrayInArray(arr, item) {
-  // reverse order of first 2 elements manually to preserve third element in the frequency comparison response
-  var itemReversed = [...item];
-  itemReversed[0] = item[1];
-  itemReversed[1] = item[0];
+/**
+ * Checks if an item, or the item with its 'people' array reverse, is present in the array
+ *
+ * @param {*} arr array contains items
+ * @param {*} item item being checked
+ */
+function isInArray(arr, item) {
+  var itemReversed = JSON.parse(JSON.stringify(item));
+  itemReversed.people[0] = item.people[1];
+  itemReversed.people[1] = item.people[0];
 
   var itemAsString = JSON.stringify(item);
   var itemReversedAsString = JSON.stringify(itemReversed);

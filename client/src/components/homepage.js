@@ -7,6 +7,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import PersonList from "./person-list";
 import FrequencyList from "./frequency-list";
+import DuplicatesList from "./duplicates-list";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,6 +18,8 @@ const useStyles = makeStyles((theme) => ({
   },
   main: {
     "margin-top": "1px",
+    "margin-left": "5px",
+    "margin-right": "5px",
   },
 }));
 
@@ -32,14 +35,15 @@ export default function HomePage() {
         </Toolbar>
       </AppBar>
       <Grid container spacing={2} className={classes.main}>
-        <Grid item xs={2} />
-        <Grid item xs={2}>
+        <Grid item xs={4}>
           <FrequencyList />
         </Grid>
         <Grid item xs={4}>
           <PersonList />
         </Grid>
-        <Grid item xs={4}></Grid>
+        <Grid item xs={4}>
+          <DuplicatesList />
+        </Grid>
       </Grid>
     </Grid>
   );

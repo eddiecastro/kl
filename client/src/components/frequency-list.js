@@ -64,7 +64,7 @@ function FrequencyList() {
 
   return (
     <Grid container>
-      <Grid container style={{ justifyContent: "center", marginBottom: 5 }}>
+      <Grid container style={{ justifyContent: "center", marginBottom: 10 }}>
         <Button
           variant="contained"
           color="primary"

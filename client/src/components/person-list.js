@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
 import Paper from "@material-ui/core/Paper";
 
 import Person from "./person";
 import ErrorAlert from "./error-alert";
 import { ENDPOINTS } from "../config/endpoints";
 import { PersonListError } from "../utils/error-constants";
+import PersonConverter from "../utils/person-converter";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -52,7 +54,7 @@ function PersonList() {
        */
       if (
         nextPage &&
-        window.innerHeight + window.scrollY + 300 >= document.body.offsetHeight
+        window.innerHeight + window.scrollY + 400 >= document.body.offsetHeight
       ) {
         setPage(nextPage);
       }
@@ -69,13 +71,7 @@ function PersonList() {
   const handleResponse = async (res) => {
     if (res.ok) {
       const json = await res.json();
-      const mappedData = json.data.map((x) => {
-        return {
-          id: x.id,
-          name: `${x.first_name} ${x.last_name}`,
-          detail: `${x.email_address} - ${x.title}`,
-        };
-      });
+      const mappedData = json.data.map((x) => PersonConverter(x));
       json.data = mappedData;
       return json;
     } else {
@@ -87,10 +83,16 @@ function PersonList() {
     <div>
       {showError ? <ErrorAlert errortext={PersonListError} /> : null}
       {people.length > 0 ? (
-        <List className={classes.root} component={Paper}>
+        <List className={classes.root}>
           {people.map((person) => (
-            // key attribute allows react to render only the data that has changed
-            <Person person={person} key={person.id} />
+            <ListItem
+              alignItems="flex-start"
+              key={person.id}
+              component={Paper}
+              style={{ marginBottom: 5 }}
+            >
+              <Person person={person} alignItems="flex-end" />
+            </ListItem>
           ))}
         </List>
       ) : null}
