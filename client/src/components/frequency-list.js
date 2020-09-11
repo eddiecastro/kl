@@ -26,12 +26,12 @@ function FrequencyList() {
           const data = await res.json();
           if (data) {
             setShowError(false);
-            setFrequency(data);
+            setFrequency(sortToArray(data));
           } else {
             setShowError(true);
           }
         } else {
-          throw "Unable to fetch data";
+          throw new Error("Unable to fetch data");
         }
       } catch (error) {
         setShowError(true);
@@ -44,6 +44,23 @@ function FrequencyList() {
       fetchData();
     }
   }, [frequency.length]);
+
+  /**
+   * Convert an object of {letter: count} properties to an array of [letter, count] pairs sorted by count desc
+   * @param {*} characterMap
+   */
+  function sortToArray(characterMap) {
+    var sorted = [];
+    if (Object.keys(characterMap).length) {
+      sorted = Object.entries(characterMap);
+
+      sorted.sort((a, b) => {
+        return b[1] - a[1];
+      });
+    }
+
+    return sorted;
+  }
 
   return (
     <Grid container>

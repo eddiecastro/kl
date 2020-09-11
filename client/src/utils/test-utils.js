@@ -13,10 +13,7 @@ export const successPeopleData = {
   ],
 };
 
-export const successFrequencyData = [
-  ["a", 1],
-  ["b", 2],
-];
+export const successFrequencyData = { a: 1, b: 2 };
 
 export function mockFetch(data, success) {
   const jsonPromise = Promise.resolve(data);
