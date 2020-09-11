@@ -6,6 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 
 import PersonList from "./person-list";
+import FrequencyList from "./frequency-list";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,7 +32,10 @@ export default function HomePage() {
         </Toolbar>
       </AppBar>
       <Grid container spacing={2} className={classes.main}>
-        <Grid item xs={4}></Grid>
+        <Grid item xs={2} />
+        <Grid item xs={2}>
+          <FrequencyList />
+        </Grid>
         <Grid item xs={4}>
           <PersonList />
         </Grid>

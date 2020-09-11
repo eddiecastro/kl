@@ -1,6 +1,5 @@
 import React from "react";
-import { render } from "@testing-library/react";
-import { act } from "react-dom/test-utils";
+import { render, screen } from "@testing-library/react";
 
 import HomePage from "../homepage";
 
@@ -8,15 +7,11 @@ describe("HomePage component", () => {
   beforeAll(() => {
     // mocking personlist so we dont have to test it here
     jest.mock("../person-list", () => () => <div>PersonList</div>);
+    jest.mock("../frequency-list", () => () => <div>FrequencyList</div>);
   });
 
   it("should render appbar title", async () => {
-    const { container, debug, getByText } = render(<HomePage />);
-    expect(getByText("Salesloft People")).toBeInTheDocument();
-  });
-
-  it("should render personlist ul", async () => {
-    const { container, debug, getByText } = render(<HomePage />);
-    expect(container.querySelector("ul")).toBeInTheDocument();
+    render(<HomePage />);
+    expect(screen.getByText("Salesloft People")).toBeInTheDocument();
   });
 });

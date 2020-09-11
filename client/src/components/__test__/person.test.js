@@ -1,5 +1,5 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 
 import Person from "../person";
 
@@ -10,13 +10,10 @@ const personData = {
 };
 
 describe("Person component", () => {
-  it("should render name, detail text, and avatar", () => {
-    const { container, debug, getByText } = render(
-      <Person person={personData} />
-    );
+  it("should render name, detail text", () => {
+    render(<Person person={personData} />);
 
-    expect(getByText(personData.name)).toBeInTheDocument();
-    expect(getByText(personData.detail)).toBeInTheDocument();
-    expect(container.querySelector("div.MuiAvatar-root")).toBeInTheDocument();
+    expect(screen.getByText(personData.name)).toBeInTheDocument();
+    expect(screen.getByText(personData.detail)).toBeInTheDocument();
   });
 });

@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
-import { Alert, AlertTitle } from "@material-ui/lab";
+import Paper from "@material-ui/core/Paper";
 
 import Person from "./person";
+import ErrorAlert from "./error-alert";
 import { ENDPOINTS } from "../config/endpoints";
+import { PersonListError } from "../utils/error-constants";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
-    backgroundColor: theme.palette.background.paper,
   },
   inline: {
     display: "inline",
@@ -33,7 +34,7 @@ function PersonList() {
         if (data) {
           setShowError(false);
           nextPage = data.metadata.paging.next_page; // set the next page based on response
-          setPeople([...people, ...data.data]);
+          setPeople((people) => [...people, ...data.data]);
         } else {
           setShowError(true);
         }
@@ -42,13 +43,16 @@ function PersonList() {
         console.log(error);
       }
     };
-    fetchData(page);
+    fetchData();
 
     const onScroll = () => {
-      // detects scroll to bottom of page, triggers loading more people if there is a next page
+      /**
+       * detects scroll to bottom of page, triggers loading more people if there is a next page
+       * add 300px to window height to trigger next load before user actually gets to the bottom of the page
+       */
       if (
         nextPage &&
-        window.innerHeight + window.scrollY >= document.body.offsetHeight
+        window.innerHeight + window.scrollY + 300 >= document.body.offsetHeight
       ) {
         setPage(nextPage);
       }
@@ -79,24 +83,17 @@ function PersonList() {
     }
   };
 
-  const Error = () => {
-    return (
-      <Alert severity="error">
-        <AlertTitle>Error</AlertTitle>
-        Failed to retrieve people — <strong>check network logs</strong>
-      </Alert>
-    );
-  };
-
   return (
     <div>
-      {showError ? <Error /> : null}
-      <List className={classes.root}>
-        {people.map((person) => (
-          // key attribute allows react to render only the data that has changed
-          <Person person={person} key={person.id} />
-        ))}
-      </List>
+      {showError ? <ErrorAlert errortext={PersonListError} /> : null}
+      {people.length > 0 ? (
+        <List className={classes.root} component={Paper}>
+          {people.map((person) => (
+            // key attribute allows react to render only the data that has changed
+            <Person person={person} key={person.id} />
+          ))}
+        </List>
+      ) : null}
     </div>
   );
 }
