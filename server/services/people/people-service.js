@@ -8,7 +8,7 @@ const errorFormatter = require("../../utils/error-formatter");
 
 /**
  * Service to retrieve people from Salesloft `/people` api
- * This essentially functions as a pass through, mirroring needed parameters and using the same response structure
+ * This just functions as a pass through, mirroring needed parameters and using the same response structure
  */
 module.exports.get = async (page = 1, perPage = 25) => {
   try {
