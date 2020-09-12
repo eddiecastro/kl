@@ -1,5 +1,5 @@
 # PeopleApp
-This repo contains 2 self contained projects for the client and server side applications
+2 self contained projects for client and server side applications
 
 # Getting started
 
