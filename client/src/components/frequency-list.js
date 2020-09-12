@@ -13,6 +13,9 @@ import ErrorAlert from "./error-alert";
 import { ENDPOINTS } from "../config/endpoints";
 import { FrequencyListError } from "../utils/error-constants";
 
+/**
+ * Fetdh frequency data on component load but dont display until use clicks button
+ */
 function FrequencyList() {
   const [showError, setShowError] = useState(false);
   const [frequency, setFrequency] = useState([]);

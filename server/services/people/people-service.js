@@ -7,8 +7,7 @@ const authentication = require("../../utils/authentication");
 const errorFormatter = require("../../utils/error-formatter");
 
 /**
- * Service to retrieve people from Salesloft `/people` api
- * This just functions as a pass through, mirroring needed parameters and using the same response structure
+ * Retrieve people from `/people` api
  */
 module.exports.get = async (page = 1, perPage = 25) => {
   try {

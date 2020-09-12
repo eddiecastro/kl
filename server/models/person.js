@@ -1,4 +1,3 @@
-// Model class reducing the size of the api response to only the required fields
 module.exports = class Person {
   constructor(id, first_name, last_name, email_address, title) {
     this.id = id;

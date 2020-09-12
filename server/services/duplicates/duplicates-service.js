@@ -2,7 +2,7 @@ const peopleService = require("../people/people-service");
 const duplicateCalculator = require("./duplicates-calculator");
 
 /**
- * Return potential duplicates using 2 different methods from all available people
+ * Return potential duplicate people using 2 different methods
  */
 module.exports.get = async (pageLimit = 10) => {
   const perPage = 100;

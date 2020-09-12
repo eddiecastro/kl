@@ -26,7 +26,9 @@ function PersonList() {
   const [page, setPage] = useState(1);
   const [showError, setShowError] = useState(false);
 
-  // Called every time component is mounted or updated
+  /**
+   * Fetch people data and display immediately
+   */
   useEffect(() => {
     var nextPage;
     const fetchData = async () => {
@@ -50,7 +52,7 @@ function PersonList() {
     const onScroll = () => {
       /**
        * detects scroll to bottom of page, triggers loading more people if there is a next page
-       * add 300px to window height to trigger next load before user actually gets to the bottom of the page
+       * add 400px to window height to trigger next load before user actually gets to the bottom of the page
        */
       if (
         nextPage &&

@@ -3,7 +3,6 @@ const frequencyCalculator = require("./frequency-calculator");
 
 /**
  * Return frequency count for characters in email address
- * Default pageLimit is 10 to reduce the likelihood of long executions or loops
  */
 module.exports.get = async (pageLimit = 10) => {
   const perPage = 100;

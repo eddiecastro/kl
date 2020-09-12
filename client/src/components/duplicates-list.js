@@ -14,6 +14,9 @@ function DuplicatesList() {
   const [duplicates, setDuplicates] = useState([]);
   const [showList, setShowList] = useState(false);
 
+  /**
+   * Fetch duplicates on component load but dont display until user clicks button
+   */
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -41,6 +44,10 @@ function DuplicatesList() {
     }
   }, [duplicates.length]);
 
+  /**
+   * Restructure data to be more easily consumable by Component
+   * @param {*} data
+   */
   function restructureData(data) {
     var frequencyMatches = data["frequencyMatches"];
     var localPartMatches = data["localPartMatches"];
@@ -49,6 +56,8 @@ function DuplicatesList() {
       match.matchingMethod = "Email frequency comparison";
       match.people[0] = PersonConverter(match.people[0]);
       match.people[1] = PersonConverter(match.people[1]);
+
+      // Conver to percentage with 2 decimal places
       match.variationPercentage = `${
         Math.round(match.variationPercentage * 10000) / 100
       } %`;
