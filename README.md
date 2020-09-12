@@ -27,6 +27,8 @@
 
 10 - A web browser should automatically open to localhost:3000
 
+```note: client and server can be run and tested individually using standard npm scripts```
+
 # Client details
 
 * React frontend built on Material UI
